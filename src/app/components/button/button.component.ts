@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,11 +6,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./button.component.css'],
 })
 export class ButtonComponent implements OnInit {
-  @Input() text!: string;
-  @Input() color!: string;
+  @Input() text: string;
+  @Input() color: string;
   @Output() btnClick = new EventEmitter();
 
-  constructor() {}
+  constructor() {
+    this.text = 'asd';
+    this.color = 'green';
+  }
 
   ngOnInit(): void {}
 
