@@ -1,3 +1,4 @@
+import { TmplAstElement } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../Task';
@@ -16,6 +17,7 @@ export class TasksComponent implements OnInit {
       .getTasks()
       .subscribe((responseTask) => (this.tasks = responseTask));
   }
+
   deleteTask(task: Task) {
     //Deletes a task but instead of giving a response, return a filter with all the tasks but don't show the task deleted
     this.taskService
@@ -23,5 +25,10 @@ export class TasksComponent implements OnInit {
       .subscribe(
         () => (this.tasks = this.tasks.filter((t) => t.id !== task.id))
       );
+  }
+  toggleReminder(task: Task) {
+    task.reminder = !task.reminder;
+    console.log(task);
+    console.log(task.reminder);
   }
 }
