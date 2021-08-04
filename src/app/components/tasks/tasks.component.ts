@@ -16,4 +16,12 @@ export class TasksComponent implements OnInit {
       .getTasks()
       .subscribe((responseTask) => (this.tasks = responseTask));
   }
+  deleteTask(task: Task) {
+    //Deletes a task but instead of giving a response, return a filter with all the tasks but don't show the task deleted
+    this.taskService
+      .deleteTasks(task)
+      .subscribe(
+        () => (this.tasks = this.tasks.filter((t) => t.id !== task.id))
+      );
+  }
 }
